@@ -1,0 +1,125 @@
+---
+title: "Untitled"
+author: "Ivana"
+date: "2024-02-02"
+output: html_document
+---
+
+```{r,include=FALSE}
+
+#Plots
+library(ggplot2)
+require(ggbio)
+library(import)
+library(cowplot)
+require(viridis)
+
+library(ggnewscale)
+library(R.matlab)
+require(BSDA)
+require(ggbeeswarm)
+library(KoehlerLabGraphics)
+require(GGally)
+library("ggpubr")
+library(plotly)
+require(ggcorrplot)
+library(gridExtra)
+library(ggridges)
+#data
+# library(dplyr)
+library(data.table)
+# library(reshape)
+# library(tidyr)
+library(tibble)
+require(splines)
+library(MASS)
+library(mgcv)
+library(stats)
+library(gam)
+library(egg)
+library(stringr)
+# ##Latest
+# if(!require(devtools)) install.packages("devtools")
+# devtools::install_github("kassambara/ggcorrplot")
+library(pls)
+library(tidyverse)
+library(numDeriv)
+library(reshape2)
+library(fitdistrplus)
+library(stats4)
+library(deSolve)
+library(plotly)
+library(patchwork)
+library(nlme)
+library(mvoutlier)
+library(minpack.lm)
+
+setwd("Z:\\ivana\\git\\LiveImagingAnalysis\\Results_AnasTracing_v2")
+
+```
+
+
+
+
+```{r}
+save_path<-"Z:\\ivana\\git\\LiveImagingAnalysis\\Results_AnasTracing_v2\\"
+df_old <- data.frame(read.csv('Z:\\ivana\\git\\LiveImagingAnalysis\\Results_AnasTracing_v2\\20231211_results\\20231211_spotmax_v2_offsetAdjusted__span0p3intpars0p12_perFoci_summary.csv'))
+df_old$analysis <- "old"
+
+df_new <- data.frame(read.csv('Z:\\ivana\\git\\LiveImagingAnalysis\\Results_AnasTracing_v2\\20240202_spotmax_v2_offsetAdjusted__sameAs_231112_perFoci_summary.csv'))
+
+df_new$analysis <- "new"
+
+df <- df_props<-bind_rows(df_old, df_new)
+
+metadata <- data.frame(read.csv('Z:\\ivana\\git\\LiveImagingAnalysis\\Results_AnasTracing_v2\\20231211_Metadata_ChromosomeTracing.csv'))
+```
+
+
+
+
+
+```{r}
+df_summary<- df%>% group_by(across(all_of(c(colnames(metadata),"offset_z",	"offset_y","offset_x","analysis"))))%>%summarise(n_foci=n(),n_nuclei=length(unique(Cell_ID)))
+df_summary
+
+write.csv(df_summary, paste0(save_path,Sys.Date(),"_recreatedMetadata_withoffsets.csv"), row.names=FALSE)
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

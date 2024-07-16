@@ -1,0 +1,8 @@
+name: HTP3_mask
+dependencies:
+  - python=3.9.2
+  - numpy=1.20.3
+  - tifffile=2021.11.2
+  - matplotlib=3.4.2
+  - scikit-image=0.19.1
+  - pandas=1.4.0
